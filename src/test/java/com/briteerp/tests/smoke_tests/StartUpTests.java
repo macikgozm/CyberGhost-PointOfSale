@@ -22,23 +22,31 @@ public class StartUpTests extends TestBase{
         pages.home().briteErpDemoLink.click();
 
         extentLogger.info("Login");
-        pages.login().login(ConfigurationReader.getProperty("user-username"),
-                            ConfigurationReader.getProperty("user-password"));
+        pages.login().login(ConfigurationReader.getProperty("manager-username"),
+                            ConfigurationReader.getProperty("manager-password"));
 
         extentLogger.info("Login to Point of Sales page");
         BrowserUtils.waitForClickablility(pages.main().pointOfSaleLink, 40);
         pages.main().pointOfSaleLink.click();
 
         extentLogger.info("Click on the Orders");
+
+        BrowserUtils.waitForVisibility(pages.pointOfSale().ordersLink, 40);
         pages.pointOfSale().ordersLink.click();
+
+
+
+        extentLogger.info("Verify that page displays  'Orders' on the left-top of the page");
+        Assert.assertEquals(pages.orders().tabTitle.getText(), "Orders");
 
 
         extentLogger.info("Click on the Products");
         pages.pointOfSale().productsLink.click();
 
+
+
         extentLogger.info("Click on the PriceList");
         pages.pointOfSale().priceListLink.click();
-
 
 
 

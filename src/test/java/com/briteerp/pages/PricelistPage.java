@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by macik on 1/29/2019.
  */
-public class PricelistPage {
+public class PricelistPage extends BasePage{
 
     public PricelistPage(){
         PageFactory.initElements(Driver.getDriver(), this);
