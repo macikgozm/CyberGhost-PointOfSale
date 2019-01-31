@@ -1,6 +1,9 @@
 package com.briteerp.utilities;
 
 public class ApplicationConstants {
+
+    public static final String PRODUCTS_PAGE_HEADER = "Products";
+
 /*
     public static final String LOGIN_ERROR_MESSAGE = "Invalid Login or Password.";
     public static final String LIST_OF_ALL_ORDERS = "List of All Orders";

@@ -18,6 +18,9 @@ public abstract class TestBase {
     private static ExtentHtmlReporter htmlReporter;
     protected static ExtentTest extentLogger;
 
+//    protected final String timeOutInSec = ConfigurationReader.getProperty("timeOutInSec");
+
+    protected final int timeOutInSec = Integer.parseInt(ConfigurationReader.getProperty("timeOutInSec"));
 
     @BeforeMethod
     public void setupMethod() {

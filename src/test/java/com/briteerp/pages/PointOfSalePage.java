@@ -16,4 +16,5 @@ public class PointOfSalePage extends BasePage{
     }
 
 
+
 }

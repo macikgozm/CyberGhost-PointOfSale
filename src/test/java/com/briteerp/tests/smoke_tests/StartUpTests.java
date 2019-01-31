@@ -1,8 +1,7 @@
 package com.briteerp.tests.smoke_tests;
 
-import com.briteerp.utilities.BrowserUtils;
-import com.briteerp.utilities.ConfigurationReader;
-import com.briteerp.utilities.TestBase;
+import com.briteerp.utilities.*;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,9 +10,8 @@ import org.testng.annotations.Test;
  */
 public class StartUpTests extends TestBase{
 
-    @Test
-    public void startUp(){
-        extentLogger = report.createTest("Start Up Test");
+
+    private void getMeToPointOfSalesAs(String accessLevel){
 
         extentLogger.info("Open the homepage");
         pages.home().open();
@@ -21,45 +19,65 @@ public class StartUpTests extends TestBase{
         extentLogger.info("Open the Brite Erp App");
         pages.home().briteErpDemoLink.click();
 
-        extentLogger.info("Login");
-        pages.login().login(ConfigurationReader.getProperty("manager-username"),
-                            ConfigurationReader.getProperty("manager-password"));
+        extentLogger.info("Logged in as " + accessLevel);
 
-        extentLogger.info("Login to Point of Sales page");
-        BrowserUtils.waitForClickablility(pages.main().pointOfSaleLink, 40);
+        if (accessLevel.equals("user"))
+            pages.login().login(ConfigurationReader.getProperty("user-username"),
+                ConfigurationReader.getProperty("user-password"));
+        else
+            pages.login().login(ConfigurationReader.getProperty("manager-username"),
+                    ConfigurationReader.getProperty("manager-password"));
+
+
+        extentLogger.info("Click on the Point of Sales page");
+        BrowserUtils.waitForClickablility(pages.main().pointOfSaleLink, timeOutInSec);
         pages.main().pointOfSaleLink.click();
 
-        extentLogger.info("Click on the Orders");
+    }
 
-        BrowserUtils.waitForVisibility(pages.pointOfSale().ordersLink, 40);
-        pages.pointOfSale().ordersLink.click();
-
-
-
-        extentLogger.info("Verify that page displays  'Orders' on the left-top of the page");
-        Assert.assertEquals(pages.orders().tabTitle.getText(), "Orders");
-
+    @Test
+    public void checkProductPageHeader(){
+        extentLogger = report.createTest("Product Page Header Test");
+        getMeToPointOfSalesAs("user");
 
         extentLogger.info("Click on the Products");
         pages.pointOfSale().productsLink.click();
 
+        BrowserUtils.wait(10);
+        extentLogger.info("Verify that product page has the header " + ApplicationConstants.PRODUCTS_PAGE_HEADER );
+        Assert.assertEquals(pages.products().tabTitle.getText(), ApplicationConstants.PRODUCTS_PAGE_HEADER);
 
-
-        extentLogger.info("Click on the PriceList");
-        pages.pointOfSale().priceListLink.click();
-
-
-
-        extentLogger.info("Click on the DashBoard");
-        pages.pointOfSale().dashboardLink.click();
-
-        extentLogger.info("Verify that user name");
-        String user = "POSUser4";
-        Assert.assertEquals(pages.pointOfSale().topUsername.getText(),user );
-//        System.out.println(pages.pointOfSale().topUsername.getText());
-        extentLogger.pass("Completed: Start Up Test");
-
-
+        extentLogger.pass("Completed: Product Page Header Test");
 
     }
+
+    @Test
+    public void checkProductNameandPrice(){
+        extentLogger = report.createTest("Product Name and Price Test");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the Products");
+        pages.pointOfSale().productsLink.click();
+
+        String productName = pages.products().selectAnyProduct();
+        extentLogger.info("Selecting the Product randomly  : " + productName);
+        WebElement product = pages.products().selectProduct(productName);
+
+        extentLogger.info("Getting the price of " + productName);
+        String price = pages.products().getPrice(product);
+
+        BrowserUtils.waitForClickablility(product, timeOutInSec);
+        extentLogger.info("Clicking on the " + productName);
+        pages.products().clickOnProduct(product);
+
+        extentLogger.info("Verify that product name is the same as previous page");
+        Assert.assertEquals(pages.products().productNameLabel.getText(), productName);
+
+        extentLogger.info("Verify that product price  is the same as previous page");
+        Assert.assertEquals(pages.products().productPriceLabel.getText(),price);
+
+        extentLogger.pass("Completed: Product Name and Price Test");
+    }
+
+
 }

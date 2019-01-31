@@ -1,5 +1,6 @@
 package com.briteerp.pages;
 
+import com.briteerp.utilities.ConfigurationReader;
 import com.briteerp.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,6 +53,8 @@ public abstract class BasePage {
     @FindBy(xpath = "//button[@class='btn btn-icon fa fa-lg fa-list-ul o_cp_switch_list']")
     public WebElement viewTypeList;
 
+
+    protected final int timeOutInSec = Integer.parseInt(ConfigurationReader.getProperty("timeOutInSec"));
 
     public BasePage(){
         PageFactory.initElements(Driver.getDriver(), this);
