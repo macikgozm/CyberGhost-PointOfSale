@@ -116,6 +116,9 @@ public class StartUpTests extends TestBase{
         Assert.assertEquals(pricelistNameOnHeader, pricelistName);
 
     }
+    @Test
+    public void sessions1(){
 
+    }
 
 }
