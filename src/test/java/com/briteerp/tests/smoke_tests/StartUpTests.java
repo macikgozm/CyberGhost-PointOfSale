@@ -79,5 +79,43 @@ public class StartUpTests extends TestBase{
         extentLogger.pass("Completed: Product Name and Price Test");
     }
 
+    @Test
+    public void checkPricelistsPageHeader(){
+        extentLogger = report.createTest("Pricelists Page Header Test");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the Pricelists");
+        pages.pointOfSale().priceListLink.click();
+
+        BrowserUtils.wait(10);
+        extentLogger.info("Verify that Pricelists page has the header " + ApplicationConstants.PRICELISTS_PAGE_HEADER );
+        Assert.assertEquals(pages.pricelist().tabTitle.getText(), ApplicationConstants.PRICELISTS_PAGE_HEADER);
+
+        extentLogger.pass("Completed: Pricelists Page Header Test");
+
+    }
+
+    @Test
+    public void checkPricelistNameHeader(){
+        extentLogger = report.createTest("Pricelists Page Header Test");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the Pricelists");
+        pages.pointOfSale().priceListLink.click();
+
+        WebElement pricelistNameElement=pages.pricelist().selectAPricelistName();
+        String pricelistName =pricelistNameElement.getText();
+        extentLogger.info("Selecting the Product randomly  : " + pricelistName);
+
+        BrowserUtils.waitForClickablility(pricelistNameElement, timeOutInSec);
+        extentLogger.info("Clicking on the " + pricelistName);
+        pricelistNameElement.click();
+
+        String pricelistNameOnHeader=pages.pricelist().pricelistNameHeader.getText();
+        extentLogger.info("Verify that pricelist name is displayed on heading");
+        Assert.assertEquals(pricelistNameOnHeader, pricelistName);
+
+    }
+
 
 }
