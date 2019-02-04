@@ -34,11 +34,6 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//div[text()='Description for Internal']")
     public WebElement descriptionForInternal;
 
-
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div/div/div/div[1]/div[2]/strong/span")
-    public WebElement ProductClick;
-
-
     public ProductsPage(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
@@ -47,6 +42,7 @@ public class ProductsPage extends BasePage{
         int rnd = new Random().nextInt( products.size() );
         WebElement element = products.get(rnd).findElement(By.className("o_kanban_record_title"));
         BrowserUtils.waitForVisibility(element, timeOutInSec);
+//        String productName = element.getText().trim();
         String productName = products.get(rnd).findElement(By.cssSelector("strong[class='o_kanban_record_title']>span")).getText();
 
         return productName;
