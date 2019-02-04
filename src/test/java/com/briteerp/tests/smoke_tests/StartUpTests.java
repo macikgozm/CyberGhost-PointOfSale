@@ -82,6 +82,7 @@ public class StartUpTests extends TestBase{
         extentLogger.pass("Completed: Product Name and Price Test");
     }
 
+<<<<<<< HEAD
 //    Mehmet Keles
     @Test
     public void checkPricelistsPageHeader(){
@@ -218,5 +219,160 @@ public class StartUpTests extends TestBase{
 
 
 
+||||||| merged common ancestors
+=======
+    @Test
+    public void checkPricelistsPageHeader(){
+        extentLogger = report.createTest("Pricelists Page Header Test");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the Pricelists");
+        pages.pointOfSale().priceListLink.click();
+
+        BrowserUtils.wait(10);
+        extentLogger.info("Verify that Pricelists page has the header " + ApplicationConstants.PRICELISTS_PAGE_HEADER );
+        assertEquals(pages.pricelist().tabTitle.getText(), ApplicationConstants.PRICELISTS_PAGE_HEADER);
+
+        extentLogger.pass("Completed: Pricelists Page Header Test");
+
+    }
+
+
+
+
+    @Test
+    public void checkPricelistNameHeader(){
+        extentLogger = report.createTest("Pricelists Page Header Test");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the Pricelists");
+        pages.pointOfSale().priceListLink.click();
+
+        WebElement pricelistNameElement=pages.pricelist().selectAPricelistName();
+        String pricelistName =pricelistNameElement.getText();
+        extentLogger.info("Selecting the Product randomly  : " + pricelistName);
+
+        BrowserUtils.waitForClickablility(pricelistNameElement, timeOutInSec);
+        extentLogger.info("Clicking on the " + pricelistName);
+        pricelistNameElement.click();
+
+        String pricelistNameOnHeader=pages.pricelist().pricelistNameHeader.getText();
+        extentLogger.info("Verify that pricelist name is displayed on heading");
+        assertEquals(pricelistNameOnHeader, pricelistName);
+
+    }
+
+    @Test
+    public void checkOrderlistsPageHeader(){
+        extentLogger = report.createTest("Orderlists Page Header Test");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the Orderlists");
+        pages.pointOfSale().ordersLink.click();
+
+        BrowserUtils.wait(10);
+        extentLogger.info("Verify that Pricelists page has the header " + ApplicationConstants.ORDERLISTS_PAGE_HEADER);
+        assertEquals(pages.orders().tabTitle.getText(), ApplicationConstants.ORDERLISTS_PAGE_HEADER);
+
+        extentLogger.pass("Completed: Pricelists Page Header Test");
+
+    }
+    @Test
+    public void checkOrdersNameHeader(){
+        extentLogger = report.createTest("Order Page Header Test");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the OrdersLists");
+        pages.pointOfSale().ordersLink.click();
+
+        WebElement OrdersNameElement=pages.orders().selectOrderlistName();
+        String OrderlistName =OrdersNameElement.getText();
+        extentLogger.info("Selecting the Order randomly  : " + OrderlistName);
+
+        BrowserUtils.waitForClickablility(OrdersNameElement, timeOutInSec);
+        extentLogger.info("Clicking on the " + OrderlistName);
+        OrdersNameElement.click();
+
+        String OrderlistNameHeader=pages.orders().OrderlistNameHeader.getText();
+        extentLogger.info("Verify that pricelist name is displayed on heading");
+        assertEquals(OrderlistNameHeader, OrderlistName);
+    }
+
+
+    @Test
+    public void checkDescriptionForCustomersInNotes(){
+
+        extentLogger = report.createTest("Description for Customers in Notes Test");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the Products");
+        pages.pointOfSale().productsLink.click();
+        pages.products().ProductClick.click();
+
+        String productName = pages.products().selectAnyProduct();
+        extentLogger.info("Selecting  a random product:" + productName);
+        WebElement product = pages.products().selectProduct(productName);
+
+
+        BrowserUtils.waitForClickablility(product, timeOutInSec);
+        //  extentLogger.info("Clicking on the " + productName);
+
+        //   System.out.println("Clicking on the " + productName);
+        //  pages.products().clickOnProduct(product);
+        //   extentLogger.info("random product " + productName + " clicked");
+
+        //   System.out.println("random product " + productName + " clicked");
+
+
+        BrowserUtils.waitForClickablility(pages.products().NotesTab, timeOutInSec);
+        extentLogger.info("Clicking on the Notes Tab");
+        pages.products().NotesTab.click();
+        //  extentLogger.info(productName + " of Notes tab clicked");
+
+
+        extentLogger.info("Verify that user can see Description for Customer in Notes tab.");
+        Assert.assertEquals(pages.products().descriptionForCustomer.getText(), "Description for Customers");
+        extentLogger.pass("Completed: Description for Customers in Notes Test");
+    }
+
+    @Test
+    public void checkDescriptionForInternalInNotes(){
+        extentLogger = report.createTest("Description for Internal in Notes Test");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the Products");
+        pages.pointOfSale().productsLink.click();
+        pages.products().ProductClick.click();
+        String productName = pages.products().selectAnyProduct();
+        extentLogger.info("Selecting  a random product:" + productName);
+        WebElement product = pages.products().selectProduct(productName);
+
+
+        BrowserUtils.waitForClickablility(product, timeOutInSec);
+        //  extentLogger.info("Clicking on the " + productName);
+
+        //   System.out.println("Clicking on the " + productName);
+        //  pages.products().clickOnProduct(product);
+        //   extentLogger.info("random product " + productName + " clicked");
+
+        //   System.out.println("random product " + productName + " clicked");
+
+
+        BrowserUtils.waitForClickablility(pages.products().NotesTab, timeOutInSec);
+        extentLogger.info("Clicking on the Notes Tab");
+        pages.products().NotesTab.click();
+        //  extentLogger.info(productName + " of Notes tab clicked");
+
+        extentLogger.info("Verify that user can see Description for Internal in Notes tab.");
+        Assert.assertEquals(pages.products().descriptionForInternal.getText(), "Description for Internal");
+        extentLogger.pass("Completed: Description for Internal in Notes Test");
+    }
+
+
+    @Test
+    public void sessions1(){
+
+    }
+>>>>>>> refs/remotes/origin/master
 
 }

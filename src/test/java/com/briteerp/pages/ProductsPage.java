@@ -25,6 +25,7 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//div[@class='o_notebook']//span[@name='list_price']")
     public WebElement productPriceLabel;
 
+<<<<<<< HEAD
     @FindBy(xpath = "//a[text()='Notes']")
     public WebElement NotesTab;
 
@@ -34,6 +35,23 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//div[text()='Description for Internal']")
     public WebElement descriptionForInternal;
 
+||||||| merged common ancestors
+=======
+    @FindBy(xpath = "//a[text()='Notes']")
+    public WebElement NotesTab;
+
+    @FindBy(xpath = "//div[text()='Description for Customers']")
+    public WebElement descriptionForCustomer;
+
+    @FindBy(xpath = "//div[text()='Description for Internal']")
+    public WebElement descriptionForInternal;
+
+
+    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div/div/div/div[1]/div[2]/strong/span")
+    public WebElement ProductClick;
+
+
+>>>>>>> refs/remotes/origin/master
     public ProductsPage(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
