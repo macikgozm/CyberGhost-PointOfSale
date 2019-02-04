@@ -216,6 +216,41 @@ public class StartUpTests extends TestBase{
         extentLogger.pass("Completed: Description for Internal in Notes Test");
     }
 
+//    Eyup Savas
+    @Test
+    public void managerPointOfSaleUserName(){
+
+        extentLogger = report.createTest("Manager PointOfSale UserName Test");
+        getMeToPointOfSalesAs("manager");
+
+        String actualUserName = pages.pointOfSale().topUsername.getText().trim();
+        String expectedUserName = "POSManager9";
+
+        extentLogger.info("Verify that userName is displayed on the top right" );
+        Assert.assertEquals(actualUserName, expectedUserName);
+        extentLogger.pass("Completed: manager topUserName Test");
+
+
+    }
+
+//    Eyup Savas
+    @Test
+    public void managerPointOfSaleHeader(){
+
+        extentLogger = report.createTest("Manager PointOfSale Header Test");
+        getMeToPointOfSalesAs("manager");
+
+        BrowserUtils.wait(10);
+        extentLogger.info("Verify that manager Point of Sale page has the header " + ApplicationConstants.POINTOFSALE_PAGE_HEADER );
+        String header = pages.pointOfSale().tabTitle.getText().trim();
+
+
+        Assert.assertEquals(header, ApplicationConstants.POINTOFSALE_PAGE_HEADER);
+        extentLogger.pass("Completed: manager Point of Sale Page Header Test");
+
+    }
+
+
 
 
 
