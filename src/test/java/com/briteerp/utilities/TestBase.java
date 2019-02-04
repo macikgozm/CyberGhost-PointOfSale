@@ -30,7 +30,7 @@ public abstract class TestBase {
         driver.manage().window().maximize();
     }
 
-    @AfterMethod
+//    @AfterMethod
     public void tearDownMethod(ITestResult result) throws IOException {
         // if any test fails, it can detect it,
         // take a screen shot at the point and attach to report

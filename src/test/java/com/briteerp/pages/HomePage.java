@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by macik on 1/29/2019.
  */
-public class HomePage {
+public class HomePage extends BasePage{
 
     @FindBy(linkText = "Sign in")
     public WebElement signInBtn;

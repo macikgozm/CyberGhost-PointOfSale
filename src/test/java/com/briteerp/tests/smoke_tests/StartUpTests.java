@@ -43,7 +43,7 @@ public class StartUpTests extends TestBase{
         extentLogger.info("Click on the Products");
         pages.pointOfSale().productsLink.click();
 
-        BrowserUtils.wait(10);
+        BrowserUtils.wait(timeOutInSec);
         extentLogger.info("Verify that product page has the header " + ApplicationConstants.PRODUCTS_PAGE_HEADER );
         Assert.assertEquals(pages.products().tabTitle.getText(), ApplicationConstants.PRODUCTS_PAGE_HEADER);
 
@@ -77,6 +77,15 @@ public class StartUpTests extends TestBase{
         Assert.assertEquals(pages.products().productPriceLabel.getText(),price);
 
         extentLogger.pass("Completed: Product Name and Price Test");
+    }
+
+    @Test
+    public void checkWhat(){
+        extentLogger = report.createTest("Product Name and Price Test");
+        getMeToPointOfSalesAs("manager");
+
+
+
     }
 
 
