@@ -80,4 +80,32 @@ public abstract class TestBase {
     public void tearDownTest() {
         report.flush();
     }
+
+
+    protected void getMeToPointOfSalesAs(String accessLevel){
+        extentLogger.info("Open the homepage");
+        pages.home().open();
+
+        extentLogger.info("Open the Brite Erp App");
+        pages.home().briteErpDemoLink.click();
+
+        extentLogger.info("Logged in as " + accessLevel);
+
+        if (accessLevel.equals("user"))
+            pages.login().login(ConfigurationReader.getProperty("user-username"),
+                    ConfigurationReader.getProperty("user-password"));
+        else
+            pages.login().login(ConfigurationReader.getProperty("manager-username"),
+                    ConfigurationReader.getProperty("manager-password"));
+
+
+        extentLogger.info("Click on the Point of Sales page");
+        BrowserUtils.waitForClickablility(pages.main().pointOfSaleLink, timeOutInSec);
+        pages.main().pointOfSaleLink.click();
+
+    }
+
+
+
+
 }

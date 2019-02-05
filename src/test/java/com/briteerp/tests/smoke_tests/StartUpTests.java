@@ -12,8 +12,9 @@ import static org.testng.Assert.*;
  */
 public class StartUpTests extends TestBase{
 
+/*
 //    Mehmet Acikgoz
-    private void getMeToPointOfSalesAs(String accessLevel){
+    protected void getMeToPointOfSalesAs(String accessLevel){
         extentLogger.info("Open the homepage");
         pages.home().open();
 
@@ -35,6 +36,7 @@ public class StartUpTests extends TestBase{
         pages.main().pointOfSaleLink.click();
 
     }
+*/
 
 //    Mehmet Acikgoz
     @Test
@@ -74,10 +76,10 @@ public class StartUpTests extends TestBase{
         pages.products().clickOnProduct(product);
 
         extentLogger.info("Verify that product name is the same as previous page");
-        assertEquals(pages.products().productNameLabel.getText(), productName);
+        assertEquals(pages.products().detailsProductNameLabel.getText(), productName);
 
         extentLogger.info("Verify that product price  is the same as previous page");
-        assertEquals(pages.products().productPriceLabel.getText(),price);
+        assertEquals(pages.products().detailsGenInfSalesPrice.getText(),price);
 
         extentLogger.pass("Completed: Product Name and Price Test");
     }
