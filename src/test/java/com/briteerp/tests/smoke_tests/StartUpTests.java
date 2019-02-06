@@ -114,7 +114,7 @@ public class StartUpTests extends TestBase{
 
         WebElement pricelistNameElement=pages.pricelist().selectAPricelistName();
         String pricelistName =pricelistNameElement.getText();
-        extentLogger.info("Selecting the Product randomly  : " + pricelistName);
+        extentLogger.info("Selecting the Pricelist name randomly  : " + pricelistName);
 
         BrowserUtils.waitForClickablility(pricelistNameElement, timeOutInSec);
         extentLogger.info("Clicking on the " + pricelistName);
