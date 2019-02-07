@@ -20,6 +20,15 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//div[@class='oe_kanban_global_click o_kanban_record']")
     public List<WebElement> products;
 
+    @FindBy(xpath = "(//div[@class='o_form_buttons_view']/button)[1]")
+    public WebElement detailsEditBtn;
+
+    @FindBy(xpath = "(//div[@class='o_form_buttons_edit']/button)[1]")
+    public WebElement detailsSaveBtn;
+
+    @FindBy(xpath = "//div[@name='list_price']/input")
+    public WebElement detailsEditSalesPriceInput;
+
     @FindBy(xpath = "//img[@class='img img-responsive']")
     public WebElement detailsMediumImg;
 
@@ -29,8 +38,30 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//div[@class='o_notebook']//span[@name='list_price']")
     public WebElement detailsGenInfSalesPrice;
 
+    @FindBy(xpath = "//div[@class='o_notebook']//span[@name='standard_price']")
+    public WebElement detailsGenInfCost;
+
     @FindBy(xpath = "//button[contains(text(),'Log note')]")
     public WebElement detailsLogNoteTab;
+
+//    @FindBy(css = "div.o_followers_actions")
+    @FindBy(xpath = "(//div[@class='o_followers_actions']/div/button)[1]")
+    public WebElement detailsFollowingLabel;
+
+    @FindBy(xpath = "//span[@class='o_follow']")
+    public WebElement detailsFollowingLabel_Follow;
+
+    @FindBy(xpath = "//span[@class='o_followers_following']")
+    public WebElement detailsFollowingLabel_Following;
+
+    @FindBy(xpath = "//span[@class='o_followers_unfollow']")
+    public WebElement detailsFollowingLabel_Unfollow;
+
+
+    //    @FindBy(xpath = "(//div[@class='modal-footer']//span)[1]")
+//    @FindBy(xpath = "//div[@class='modal-dialog']//div[@class='modal-footer']//span[text()='Ok']")
+    @FindBy(css = "div.modal-content>div.modal-footer>button.btn.btn-sm.btn-primary")
+    public WebElement detailsPopUpConfirmationOkBtn;
 
     @FindBy(css = "div.o_composer_input>textarea")
     public WebElement detailsLogNoteMessage;
@@ -60,6 +91,7 @@ public class ProductsPage extends BasePage{
      * @return the name of the randomly selected product.
      */
     public String selectAnyProduct(){
+        BrowserUtils.wait(3);
         int rnd = new Random().nextInt( products.size() );
         WebElement element = products.get(rnd).findElement(By.className("o_kanban_record_title"));
         BrowserUtils.waitForVisibility(element, timeOutInSec);
