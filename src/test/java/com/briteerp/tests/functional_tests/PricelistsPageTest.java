@@ -54,4 +54,32 @@ public class PricelistsPageTest extends TestBase {
 
         extentLogger.pass("Completed : Pricelist name is displayed when searched.");
     }
+
+    // Mehmet Keles - BRIT-2086
+    @Test
+    public void checkSelectableMenuDisabled(){
+        extentLogger = report.createTest("Selectable menu is disabled");
+        getMeToPointOfSalesAs("user");
+
+        extentLogger.info("Click on the Pricelists link");
+        pages.pointOfSale().priceListLink.click();
+
+        WebElement pricelistNameElement=pages.pricelist().selectAPricelistName();
+        String pricelistName =pricelistNameElement.getText();
+        extentLogger.info("Selecting the Pricelist name randomly  : " + pricelistName);
+
+        BrowserUtils.waitForClickablility(pricelistNameElement, timeOutInSec);
+        extentLogger.info("Clicking on the " + pricelistName);
+        pricelistNameElement.click();
+
+        BrowserUtils.waitForVisibility(pages.pricelist().selectableMenu, timeOutInSec);
+        extentLogger.info("Checking selectable menu is disabled");
+        boolean isEnabled=pages.pricelist().selectableMenu.isEnabled();
+
+        extentLogger.info("Verify that pricelist name is displayed");
+        Assert.assertFalse(isEnabled);
+
+
+
+    }
 }

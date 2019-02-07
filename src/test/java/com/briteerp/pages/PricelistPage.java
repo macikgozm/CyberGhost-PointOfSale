@@ -21,6 +21,9 @@ public class PricelistPage extends BasePage{
     @FindBy(xpath = "//span[@class='o_field_char o_field_widget o_readonly_modifier o_required_modifier']")
     public WebElement pricelistNameHeader;
 
+    @FindBy(xpath = "//input[contains(@id,'o_field_input')]")
+    public WebElement selectableMenu;
+
     public PricelistPage(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
