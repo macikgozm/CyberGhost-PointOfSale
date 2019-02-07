@@ -8,29 +8,23 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-
 import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
-import static org.testng.Assert.assertEquals;
 
 public class ProductsPageTest extends TestBase {
 
-
     // Mehmet Acikgoz - BRIT-854
-    @Test
+    @Test (priority = 1)
     public void validProductsPageTitle(){
         extentLogger = report.createTest("Page Title Test");
         getMeToPointOfSalesAs("user");
 
         extentLogger.info("Click on the products link");
         pages.pointOfSale().productsLink.click();
-        BrowserUtils.wait(10);
 
-        extentLogger.info("Verify that page title contains “Products - Odoo");
+        BrowserUtils.waitUntilTextToBePresentInElement(pages.products().tabTitle,
+                                                       ApplicationConstants.PRODUCTS_PAGE_HEADER, timeOutInSec);
+
+        extentLogger.info("Verify that page title "+ ApplicationConstants.PRODUCTS_PAGE_TITLE);
         String message =  Driver.getDriver().getTitle();
         Assert.assertEquals(message, ApplicationConstants.PRODUCTS_PAGE_TITLE);
 
@@ -39,15 +33,16 @@ public class ProductsPageTest extends TestBase {
 
 
 //    Mehmet Acikgoz - BRIT-919
-    @Test()
+    @Test (priority = 2)
     public void hasProductHaveNameAndPrice(){
         extentLogger = report.createTest("Product has name and price");
         getMeToPointOfSalesAs("user");
 
         extentLogger.info("Click on the products link");
         pages.pointOfSale().productsLink.click();
-        BrowserUtils.wait(5);
 
+        BrowserUtils.waitUntilTextToBePresentInElement(pages.products().tabTitle,
+                                                       ApplicationConstants.PRODUCTS_PAGE_HEADER, timeOutInSec);
 
         String productName = pages.products().selectAnyProduct();
         extentLogger.info("Verify that the selected product " + productName + "has a name" );
@@ -61,7 +56,7 @@ public class ProductsPageTest extends TestBase {
     }
 
 //    Mehmet Acikgoz - BRIT-925
-    @Test
+    @Test (priority = 3)
     public void hasProductWithThumbnailPictureHavePictureWhenClicked(){
         extentLogger = report.createTest("The Product which has a thumbnail picture has alos medium size Picture");
         getMeToPointOfSalesAs("user");
@@ -89,7 +84,7 @@ public class ProductsPageTest extends TestBase {
     }
 
     //    Mehmet Acikgoz - BRIT-929
-    @Test
+    @Test (priority = 4)
     public void checkProductPrice(){
         extentLogger = report.createTest("Product Price Test");
         getMeToPointOfSalesAs("user");
@@ -109,13 +104,13 @@ public class ProductsPageTest extends TestBase {
         pages.products().clickOnProduct(product);
 
         extentLogger.info("Verify that product price  is the same as previous page");
-        assertEquals(pages.products().detailsGenInfSalesPrice.getText(),expectedPrice);
+        Assert.assertEquals(pages.products().detailsGenInfSalesPrice.getText(),expectedPrice);
 
         extentLogger.pass("Completed: Product Price Test");
     }
 
 //    Mehmet Acikgoz  - BRIT-932
-    @Test
+    @Test (priority = 5)
     public void isProductDisplayedWhenSearched(){
         extentLogger = report.createTest("Product is displayed when searched.");
         getMeToPointOfSalesAs("user");
@@ -126,20 +121,17 @@ public class ProductsPageTest extends TestBase {
         extentLogger.info("Select a product");
         String productName = pages.products().selectAnyProduct();
 
-
         extentLogger.info("Type " + productName + " into search box and hit ENTER.");
         pages.products().searchInput.sendKeys(productName + Keys.ENTER);
 
         extentLogger.info("Verify that the product is shown on the page.");
-        BrowserUtils.wait(5);
-        String availableProducts = BrowserUtils.getElementsText(pages.products().products).toString();
-        System.out.println("availableProducts = " + availableProducts);
-
+        BrowserUtils.hover(pages.products().selectProduct(productName));
+        Assert.assertTrue(pages.products().products.size() > 0);
         extentLogger.pass("Completed : Product is displayed when searched.");
     }
 
 //    Mehmet Acikgoz  - BRIT-934
-    @Test
+    @Test (priority = 6)
     public void canUserPutNotes(){
         extentLogger = report.createTest("User can put Notes on product");
         getMeToPointOfSalesAs("user");
@@ -158,22 +150,21 @@ public class ProductsPageTest extends TestBase {
 
 
         extentLogger.info("Write some notes and click on Log link.");
-        BrowserUtils.wait(10);
+        BrowserUtils.waitForVisibility(pages.products().detailsLogNoteLogBtn, timeOutInSec);
         String noteToAdd = "CyberGhost team member updated at " + new Date().toString();
         pages.products().detailsLogNoteMessage.sendKeys(noteToAdd);
         pages.products().detailsLogNoteLogBtn.click();
 
         extentLogger.info("Verify that “Log note’’ is displayed on the page");
-        BrowserUtils.wait(10);
+        BrowserUtils.wait(3);
         String submittedNotes = BrowserUtils.getElementsText(pages.products().detailsSubmittedNoteList).toString();
-
         Assert.assertTrue(submittedNotes.contains(noteToAdd));
 
         extentLogger.pass("Completed: User can put Notes on product");
     }
 
 //    Mehmet Acikgoz - BRIT-938
-    @Test
+    @Test (priority = 7)
     public void isCostLessThanSalesPrice(){
         extentLogger = report.createTest("The cost of a product is less than the sales price.");
         getMeToPointOfSalesAs("user");
@@ -202,7 +193,7 @@ public class ProductsPageTest extends TestBase {
     }
 
 //    Mehmet Acikgoz- BRIT-941
-    @Test
+    @Test (priority = 8)
     public void IsProductNameSeenAtTheTop(){
         extentLogger = report.createTest("Product name is seen at the top of the page");
         getMeToPointOfSalesAs("user");
@@ -215,24 +206,17 @@ public class ProductsPageTest extends TestBase {
         WebElement product = pages.products().selectProduct(productName);
         product.click();
 
-        BrowserUtils.waitForVisibility(pages.products().detailsGenInfSalesPrice, 30);
-        extentLogger.info("Verify that the name of the product is the same as the one with the previous step.");
-        Assert.assertEquals(pages.products().detailsProductNameLabel.getText().trim(), productName);
-
         extentLogger.info("Verify that the name of the product is displayed on the top of the page.");
-
         BrowserUtils.waitForVisibility(pages.products().detailsGenInfSalesPrice, timeOutInSec);
         String productNameAtTheTop = pages.products().detailsProductNameAtTheTop.getText().trim();
-        Assert.assertEquals(productNameAtTheTop, productName);
-
-//        Assert.assertTrue(pages.products().detailsProductNameLabel.isDisplayed());
+        Assert.assertTrue(productNameAtTheTop.contains(productName));
 
         extentLogger.pass ("Product name is seen at the top of the page");
     }
 
 
 //    Mehmet Acikgoz - BRIT 1861
-    @Test
+    @Test (priority = 9)
     public void canManagerUpdateTheSalesPrice(){
         extentLogger = report.createTest("Manager can update the sales price of the product.");
         getMeToPointOfSalesAs("manager");
@@ -250,14 +234,13 @@ public class ProductsPageTest extends TestBase {
 
         extentLogger.info("Change the sales price");
         WebElement element = pages.products().detailsEditSalesPriceInput;
-        String priceStr = element.getAttribute("value").replace(",","");
-        BrowserUtils.wait(5);
+        String priceStr = element.getAttribute("value").replace(",","").replace(",","");
         element.clear();
         double price = Double.parseDouble(priceStr);
         String newPriceStr = "" + (price+1);
 
         element.sendKeys(newPriceStr);
-        BrowserUtils.wait(5);
+        BrowserUtils.waitUntilTextToBePresentInElementValue(element, newPriceStr, timeOutInSec);
 
         extentLogger.info("Click on the Save button");
         pages.products().detailsSaveBtn.click();

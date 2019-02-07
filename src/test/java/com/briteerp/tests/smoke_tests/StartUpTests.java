@@ -21,12 +21,13 @@ public class StartUpTests extends TestBase{
         extentLogger.info("Click on the Products");
         pages.pointOfSale().productsLink.click();
 
-        BrowserUtils.wait(10);
+        BrowserUtils.waitUntilTextToBePresentInElement(pages.products().tabTitle,
+                                                       ApplicationConstants.PRODUCTS_PAGE_HEADER, timeOutInSec);
+
         extentLogger.info("Verify that product page has the header " + ApplicationConstants.PRODUCTS_PAGE_HEADER );
         assertEquals(pages.products().tabTitle.getText(), ApplicationConstants.PRODUCTS_PAGE_HEADER);
 
         extentLogger.pass("Completed: Product Page Header Test");
-
     }
 
 //    Mehmet Acikgoz - BRIT 945
@@ -42,18 +43,13 @@ public class StartUpTests extends TestBase{
         extentLogger.info("Selecting the Product randomly  : " + productName);
         WebElement product = pages.products().selectProduct(productName);
 
-//        extentLogger.info("Getting the price of " + productName);
-//        String price = pages.products().getPrice(product);
-
         BrowserUtils.waitForClickablility(product, timeOutInSec);
         extentLogger.info("Clicking on the " + productName);
         pages.products().clickOnProduct(product);
+        BrowserUtils.waitForVisibility(pages.products().detailsProductNameLabel, timeOutInSec);
 
         extentLogger.info("Verify that product name is the same as previous page");
         assertEquals(pages.products().detailsProductNameLabel.getText(), productName);
-
-//        extentLogger.info("Verify that product price  is the same as previous page");
-//        assertEquals(pages.products().detailsGenInfSalesPrice.getText(),price);
 
         extentLogger.pass("Completed: Valid Product Name ");
     }
