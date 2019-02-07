@@ -15,7 +15,7 @@ import java.util.Random;
 /**
  * Created by macik on 1/29/2019.
  */
-public class ProductsPage extends BasePage{
+public class ProductsPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='oe_kanban_global_click o_kanban_record']")
     public List<WebElement> products;
@@ -50,17 +50,18 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//div[text()='Description for Internal']")
     public WebElement descriptionForInternal;
 
-    public ProductsPage(){
+    public ProductsPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
     /**
      * Mehmet Acikgoz
      * picks up a product randomly and returns the name of the product
+     *
      * @return the name of the randomly selected product.
      */
-    public String selectAnyProduct(){
-        int rnd = new Random().nextInt( products.size() );
+    public String selectAnyProduct() {
+        int rnd = new Random().nextInt(products.size());
         WebElement element = products.get(rnd).findElement(By.className("o_kanban_record_title"));
         BrowserUtils.waitForVisibility(element, timeOutInSec);
 //        String productName = element.getText().trim();
@@ -71,33 +72,36 @@ public class ProductsPage extends BasePage{
 
 
     /**
-     *  Mehmet Acikgoz
-     *  clicks on the product which is sent as parameter
-      * @param product
+     * Mehmet Acikgoz
+     * clicks on the product which is sent as parameter
+     *
+     * @param product
      */
-    public void clickOnProduct(WebElement product){
+    public void clickOnProduct(WebElement product) {
         BrowserUtils.waitForClickablility(product, timeOutInSec);
         product.click();
     }
 
     /**
      * Returns the price of the product on the products main pagee
+     *
      * @param product,
      * @return the price of the product
      */
-    public String getPrice(WebElement product){
+    public String getPrice(WebElement product) {
         WebElement price = product.findElement(
-                           By.xpath("..//following-sibling::ul//span[@name='lst_price']"));
+                By.xpath("..//following-sibling::ul//span[@name='lst_price']"));
         return price.getText();
     }
 
     /**
      * Mehmet Acikgoz
      * Returns the price of the product on the products main page
+     *
      * @param productName,
      * @return the price of the product
      */
-    public String getPrice(String productName){
+    public String getPrice(String productName) {
         WebElement product = selectProduct(productName);
         return getPrice(product);
     }
@@ -105,28 +109,30 @@ public class ProductsPage extends BasePage{
     /**
      * Mehmet Acikgoz
      * Returns the product element when productname is given as paremeter
+     *
      * @param productname, the product name
      * @return, the Webelement
      */
-    public WebElement selectProduct(String productname){
+    public WebElement selectProduct(String productname) {
         String beforeXpath = "//*[text() ='";
         String afterXpath = "']";
         String xpath = beforeXpath + productname + afterXpath;
-        return  Driver.getDriver().findElement(By.xpath(xpath));
+        return Driver.getDriver().findElement(By.xpath(xpath));
     }
 
     /**
      * Mehmet Acikgoz
      * Returns true if the product has a thumbnail picture on the prodocts main page, otherwise false.
+     *
      * @param element, the produst element itsef
      * @return , true/false depending on the case.
      */
-    public boolean hasThumbnailPicture(WebElement element){
-       String src = element.findElement(By.xpath("ancestor::div[@class='oe_kanban_global_click o_kanban_record']//img"))
-                           .getAttribute("src");
+    public boolean hasThumbnailPicture(WebElement element) {
+        String src = element.findElement(By.xpath("ancestor::div[@class='oe_kanban_global_click o_kanban_record']//img"))
+                .getAttribute("src");
 //       System.out.println("src = " + src);
 
-        if ( src.equals("http://52.39.162.23/web/static/src/img/placeholder.png") )
+        if (src.equals("http://52.39.162.23/web/static/src/img/placeholder.png"))
             return false;
         else
             return true;
@@ -135,10 +141,11 @@ public class ProductsPage extends BasePage{
     /**
      * Mehmet Acikgoz
      * Returns true if the product has a thumbnail picture on the products main page, otherwise false.
+     *
      * @param productname, the product name is given
      * @return true/false depending on the case.
      */
-    public boolean hasThumbnailPicture(String  productname){
+    public boolean hasThumbnailPicture(String productname) {
         WebElement product = selectProduct(productname);
         return hasThumbnailPicture(product);
     }

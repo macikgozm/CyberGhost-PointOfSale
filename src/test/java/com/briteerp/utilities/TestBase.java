@@ -82,7 +82,7 @@ public abstract class TestBase {
     }
 
 
-    protected void getMeToPointOfSalesAs(String accessLevel){
+    protected void getMeToPointOfSalesAs(String accessLevel) {
         extentLogger.info("Open the homepage");
         pages.home().open();
 
@@ -104,8 +104,6 @@ public abstract class TestBase {
         pages.main().pointOfSaleLink.click();
 
     }
-
-
 
 
 }

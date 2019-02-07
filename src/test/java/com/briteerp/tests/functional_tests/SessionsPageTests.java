@@ -12,7 +12,7 @@ public class SessionsPageTests extends TestBase {
 //Eyup Savas-1 BRIT-
 
     @Test
-    public void validSessionsPageTitle(){
+    public void validSessionsPageTitle() {
         extentLogger = report.createTest("Page Title Test");
         getMeToPointOfSalesAs("manager");
 
@@ -21,12 +21,11 @@ public class SessionsPageTests extends TestBase {
         BrowserUtils.wait(10);
 
         extentLogger.info("Verify that page title contains “Sessions");
-        String actual =  Driver.getDriver().getTitle();
+        String actual = Driver.getDriver().getTitle();
         Assert.assertEquals(actual, ApplicationConstants.SESSIONS_PAGE_TITLE);
 
         extentLogger.pass("Completed: Page Title Test");
     }
-
 
 
 //Eyup Savas-2 BRIT-
@@ -42,7 +41,6 @@ public class SessionsPageTests extends TestBase {
 //Eyup Savas-7 BRIT-
 
 //Eyup Savas-8 BRIT-
-
 
 
 }

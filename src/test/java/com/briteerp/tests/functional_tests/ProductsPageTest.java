@@ -22,7 +22,7 @@ public class ProductsPageTest extends TestBase {
 
     // Mehmet Acikgoz - BRIT-854
     @Test
-    public void validProductsPageTitle(){
+    public void validProductsPageTitle() {
         extentLogger = report.createTest("Page Title Test");
         getMeToPointOfSalesAs("user");
 
@@ -31,16 +31,16 @@ public class ProductsPageTest extends TestBase {
         BrowserUtils.wait(10);
 
         extentLogger.info("Verify that page title contains “Products - Odoo");
-        String message =  Driver.getDriver().getTitle();
+        String message = Driver.getDriver().getTitle();
         Assert.assertEquals(message, ApplicationConstants.PRODUCTS_PAGE_TITLE);
 
         extentLogger.pass("Completed: Page Title Test");
     }
 
 
-//    Mehmet Acikgoz - BRIT-919
+    //    Mehmet Acikgoz - BRIT-919
     @Test()
-    public void hasProductHaveNameAndPrice(){
+    public void hasProductHaveNameAndPrice() {
         extentLogger = report.createTest("Product has name and price");
         getMeToPointOfSalesAs("user");
 
@@ -50,19 +50,19 @@ public class ProductsPageTest extends TestBase {
 
 
         String productName = pages.products().selectAnyProduct();
-        extentLogger.info("Verify that the selected product " + productName + "has a name" );
+        extentLogger.info("Verify that the selected product " + productName + "has a name");
         Assert.assertFalse(productName.isEmpty());
 
-        extentLogger.info("Verify that the selected product " + productName + "has a price" );
+        extentLogger.info("Verify that the selected product " + productName + "has a price");
         String price = pages.products().getPrice(productName);
         Assert.assertFalse(price.isEmpty());
 
         extentLogger.info("Completed: Product has name and price");
     }
 
-//    Mehmet Acikgoz - BRIT-925
+    //    Mehmet Acikgoz - BRIT-925
     @Test
-    public void hasProductWithThumbnailPictureHavePictureWhenClicked(){
+    public void hasProductWithThumbnailPictureHavePictureWhenClicked() {
         extentLogger = report.createTest("The Product which has a thumbnail picture has alos medium size Picture");
         getMeToPointOfSalesAs("user");
 
@@ -75,19 +75,19 @@ public class ProductsPageTest extends TestBase {
             String productName = pages.products().selectAnyProduct();
             product = pages.products().selectProduct(productName);
 //            System.out.println("test : " + pages.products().hasThumbnailPicture(product));
-        } while ( !pages.products().hasThumbnailPicture(product) );
+        } while (!pages.products().hasThumbnailPicture(product));
         product.click();
 
         extentLogger.info("Verify that product has a picture.");
         BrowserUtils.waitForVisibility(pages.products().detailsMediumImg, 30);
-        Assert.assertTrue(pages.products().detailsMediumImg.isDisplayed() );
+        Assert.assertTrue(pages.products().detailsMediumImg.isDisplayed());
 
         extentLogger.pass("Completed: The Product which has a thumbnail picture has alos medium size Picture");
     }
 
     //    Mehmet Acikgoz - BRIT-929
     @Test
-    public void checkProductPrice(){
+    public void checkProductPrice() {
         extentLogger = report.createTest("Product Price Test");
         getMeToPointOfSalesAs("user");
 
@@ -106,14 +106,14 @@ public class ProductsPageTest extends TestBase {
         pages.products().clickOnProduct(product);
 
         extentLogger.info("Verify that product price  is the same as previous page");
-        assertEquals(pages.products().detailsGenInfSalesPrice.getText(),expectedPrice);
+        assertEquals(pages.products().detailsGenInfSalesPrice.getText(), expectedPrice);
 
         extentLogger.pass("Completed: Product Price Test");
     }
 
-//    Mehmet Acikgoz  - BRIT-932
+    //    Mehmet Acikgoz  - BRIT-932
     @Test
-    public void isProductDisplayedWhenSearched(){
+    public void isProductDisplayedWhenSearched() {
         extentLogger = report.createTest("Product is displayed when searched.");
         getMeToPointOfSalesAs("user");
 
@@ -133,9 +133,9 @@ public class ProductsPageTest extends TestBase {
         extentLogger.pass("Completed : Product is displayed when searched.");
     }
 
-//    Mehmet Acikgoz  - BRIT-934
+    //    Mehmet Acikgoz  - BRIT-934
     @Test
-    public void canUserPutNotes(){
+    public void canUserPutNotes() {
         extentLogger = report.createTest("User can put Notes on product");
         getMeToPointOfSalesAs("user");
 

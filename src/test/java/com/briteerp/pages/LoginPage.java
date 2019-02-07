@@ -20,11 +20,11 @@ public class LoginPage {
     public WebElement loginBtn;
 
 
-    public LoginPage(){
+    public LoginPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    public void login(String username, String password){
+    public void login(String username, String password) {
         this.email.sendKeys(username);
         this.password.sendKeys(password);
         loginBtn.click();

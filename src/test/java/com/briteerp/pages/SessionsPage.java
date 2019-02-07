@@ -9,6 +9,4 @@ public class SessionsPage extends BasePage {
     }
 
 
-
-
 }

@@ -17,10 +17,12 @@ public class ConfigurationReader {
             properties.load(stream);
 
             stream.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static String getProperty(String key) { return properties.getProperty(key); }
+    public static String getProperty(String key) {
+        return properties.getProperty(key);
+    }
 }

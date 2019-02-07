@@ -9,12 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by macik on 1/29/2019.
  */
-public class PointOfSalePage extends BasePage{
+public class PointOfSalePage extends BasePage {
 
     public PointOfSalePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
-
 
 
 }
