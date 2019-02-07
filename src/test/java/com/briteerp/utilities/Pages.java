@@ -14,6 +14,7 @@ public class Pages {
     private OrdersPage ordersPage;
     private ProductsPage productsPage;
     private PricelistPage pricelistPage;
+    private PricelistPage sessionsPage;
 
 
 
@@ -70,5 +71,12 @@ public class Pages {
             pricelistPage = new PricelistPage();
         }
         return pricelistPage;
+    }
+
+    public SessionsPage sessions (){
+        if (sessionsPage == null){
+            sessionsPage = new SessionsPage();
+        }
+        return sessionsPage;
     }
 }
