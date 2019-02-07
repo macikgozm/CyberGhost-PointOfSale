@@ -4,17 +4,12 @@ import com.briteerp.utilities.ApplicationConstants;
 import com.briteerp.utilities.BrowserUtils;
 import com.briteerp.utilities.Driver;
 import com.briteerp.utilities.TestBase;
-import com.mongodb.operation.BaseWriteOperation;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.awt.image.DirectColorModel;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -225,137 +220,18 @@ public class ProductsPageTest extends TestBase {
         Assert.assertEquals(pages.products().detailsProductNameLabel.getText().trim(), productName);
 
         extentLogger.info("Verify that the name of the product is displayed on the top of the page.");
-        Assert.assertTrue(pages.products().detailsProductNameLabel.isDisplayed());
+
+        BrowserUtils.waitForVisibility(pages.products().detailsGenInfSalesPrice, timeOutInSec);
+        String productNameAtTheTop = pages.products().detailsProductNameAtTheTop.getText().trim();
+        Assert.assertEquals(productNameAtTheTop, productName);
+
+//        Assert.assertTrue(pages.products().detailsProductNameLabel.isDisplayed());
 
         extentLogger.pass ("Product name is seen at the top of the page");
     }
 
-//    Mehmet Acikgoz - BRIT-945
-    @Test
-    public void canProductBeFollowed(){
-        extentLogger = report.createTest("Product can be followed.");
-        getMeToPointOfSalesAs("user");
 
-        extentLogger.info("Click on the Products");
-        pages.pointOfSale().productsLink.click();
-
-
-        String productName = pages.products().selectAnyProduct();
-        extentLogger.info("Click on " + productName);
-        WebElement product = pages.products().selectProduct(productName);
-        product.click();
-
-        extentLogger.info("Click on the \"Follow\" link.");
-//        System.out.println("label "+pages.products().detailsFollowingLabel.getText());
-        WebElement labelElement    =  pages.products().detailsFollowingLabel;
-        WebElement labelElementFollow    =  pages.products().detailsFollowingLabel_Follow;
-        WebElement labelElementFollowing =  pages.products().detailsFollowingLabel_Following;
-        WebElement labelElementUnFollow  =  pages.products().detailsFollowingLabel_Unfollow;
-        System.out.println("labelElement.getText() = " + labelElementFollow.getText());
-        BrowserUtils.waitForClickablility(labelElementFollow, timeOutInSec);
-        labelElementFollow.click();
-
-        System.out.println("labelElement.getText() = " + labelElementFollowing.getText());
-
-        BrowserUtils.wait(3);
-        BrowserUtils.hover(pages.products().detailsGenInfSalesPrice);
-
-        System.out.println("labelElement.getText() = " + labelElement.getText());
-
-//        System.out.println("label "+pages.products().detailsFollowingLabel.getText());
-        Assert.assertEquals(labelElement.getText(), "Following");
-        extentLogger.info("Verify that 'Following' is displayed at the same spot");
-
-        System.out.println("labelElement.getText() = " + labelElement.getText());
-
-//        BrowserUtils.waitForPageToLoad(timeOutInSec);
-
-        BrowserUtils.hover(labelElement);
-//        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeOutInSec);
-//        wait.until(ExpectedConditions.textToBePresentInElement(labelElement, "Following"));
-        labelElementUnFollow.click();
-
-        System.out.println("labelElement.getText() = " + labelElement.getText());
-
-
-
-//        BrowserUtils.hover(pages.products().detailsGenInfSalesPrice);
-//        extentLogger.info("FYI: Changing the status to former state to keep the data clean");
-//        BrowserUtils.wait(5);
-
-//        BrowserUtils.hover(labelElement);
-/*
-        System.out.println("labelElement.getText() = " + labelElement.getText());
-        BrowserUtils.waitForClickablility(labelElement,timeOutInSec);
-        labelElement.click();
-
-*/
-        BrowserUtils.wait(5);
-
-//        BrowserUtils.waitForClickablility(pages.products().detailsPopUpConfirmationOkBtn, timeOutInSec);
-
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeOutInSec);
-        wait.until(ExpectedConditions.textToBePresentInElement(pages.products().detailsPopUpConfirmationOkBtn, "Ok"));
-
-        BrowserUtils.hover(pages.products().detailsPopUpConfirmationOkBtn);
-        pages.products().detailsPopUpConfirmationOkBtn.click();
-//        BrowserUtils.clickWithJS(pages.products().detailsPopUpConfirmationOkBtn);
-//        Alert alert = Driver.getDriver().switchTo().alert();
-//        alert.accept();
-
-        extentLogger.pass ("Completed: Product can be followed.");
-    }
-
-
-    //    Mehmet Acikgoz - BRIT-948
-    @Test
-    public void canProductBeUnFollowed(){
-        extentLogger = report.createTest("Product can be unfollowed.");
-        getMeToPointOfSalesAs("user");
-
-        extentLogger.info("Click on the Products");
-        pages.pointOfSale().productsLink.click();
-
-        String productName = pages.products().selectAnyProduct();
-        extentLogger.info("Click on " + productName);
-        WebElement product = pages.products().selectProduct(productName);
-        product.click();
-
-        extentLogger.info("Click on the \"Follow\" link.");
-
-        WebElement labelElement = pages.products().detailsFollowingLabel;
-        labelElement.click();
-
-        BrowserUtils.wait(3);
-        BrowserUtils.hover(pages.products().detailsGenInfSalesPrice);
-
-
-        extentLogger.info("Hover over \"Following\" link and click the \"X Unfollow\" link");
-        BrowserUtils.hover(labelElement);
-        BrowserUtils.waitForClickablility(labelElement, timeOutInSec);
-        labelElement.click();
-
-        extentLogger.info("Click Ok on the pop-up menu.");
-        BrowserUtils.wait(5);
-        BrowserUtils.waitForClickablility(pages.products().detailsPopUpConfirmationOkBtn, timeOutInSec);
-//        Driver.getDriver().manage().timeouts().implicitlyWait(timeOutInSec, TimeUnit.SECONDS);
-        BrowserUtils.hover(pages.products().detailsPopUpConfirmationOkBtn);
-        pages.products().detailsPopUpConfirmationOkBtn.click();
-        BrowserUtils.wait(10);
-//        BrowserUtils.waitForVisibility(pages.products().detailsGenInfSalesPrice, timeOutInSec);
-        BrowserUtils.hover(pages.products().detailsGenInfSalesPrice);
-
-        BrowserUtils.waitForVisibility(pages.products().detailsGenInfSalesPrice, 30);
-        extentLogger.info("Verify that 'Follow' is displayed at the same spot");
-        Assert.assertEquals(labelElement.getText(), "Follow");
-
-        extentLogger.pass ("Completed: Product can be unfollowed.");
-
-        //div[@class='modal-content']//div[@class='modal-footer']//span[text()='Ok']
-        //*[@id="modal_571"]/div/div/div[3]/button[1]/span
-    }
-
-
+//    Mehmet Acikgoz - BRIT 1861
     @Test
     public void canManagerUpdateTheSalesPrice(){
         extentLogger = report.createTest("Manager can update the sales price of the product.");

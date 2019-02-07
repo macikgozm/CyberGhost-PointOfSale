@@ -12,35 +12,9 @@ import static org.testng.Assert.*;
  */
 public class StartUpTests extends TestBase{
 
-/*
-//    Mehmet Acikgoz
-    protected void getMeToPointOfSalesAs(String accessLevel){
-        extentLogger.info("Open the homepage");
-        pages.home().open();
-
-        extentLogger.info("Open the Brite Erp App");
-        pages.home().briteErpDemoLink.click();
-
-        extentLogger.info("Logged in as " + accessLevel);
-
-        if (accessLevel.equals("user"))
-            pages.login().login(ConfigurationReader.getProperty("user-username"),
-                ConfigurationReader.getProperty("user-password"));
-        else
-            pages.login().login(ConfigurationReader.getProperty("manager-username"),
-                    ConfigurationReader.getProperty("manager-password"));
-
-
-        extentLogger.info("Click on the Point of Sales page");
-        BrowserUtils.waitForClickablility(pages.main().pointOfSaleLink, timeOutInSec);
-        pages.main().pointOfSaleLink.click();
-
-    }
-*/
-
-//    Mehmet Acikgoz
+//    Mehmet Acikgoz -BRIT 948
     @Test
-    public void checkProductPageHeader(){
+    public void validProductPageHeader(){
         extentLogger = report.createTest("Product Page Header Test");
         getMeToPointOfSalesAs("user");
 
@@ -55,10 +29,10 @@ public class StartUpTests extends TestBase{
 
     }
 
-//    Mehmet Acikgoz
+//    Mehmet Acikgoz - BRIT 945
     @Test
-    public void checkProductNameandPrice(){
-        extentLogger = report.createTest("Product Name and Price Test");
+    public void validProductNameWhenClicked(){
+        extentLogger = report.createTest("Valid Product Name ");
         getMeToPointOfSalesAs("user");
 
         extentLogger.info("Click on the Products");
@@ -68,8 +42,8 @@ public class StartUpTests extends TestBase{
         extentLogger.info("Selecting the Product randomly  : " + productName);
         WebElement product = pages.products().selectProduct(productName);
 
-        extentLogger.info("Getting the price of " + productName);
-        String price = pages.products().getPrice(product);
+//        extentLogger.info("Getting the price of " + productName);
+//        String price = pages.products().getPrice(product);
 
         BrowserUtils.waitForClickablility(product, timeOutInSec);
         extentLogger.info("Clicking on the " + productName);
@@ -78,10 +52,10 @@ public class StartUpTests extends TestBase{
         extentLogger.info("Verify that product name is the same as previous page");
         assertEquals(pages.products().detailsProductNameLabel.getText(), productName);
 
-        extentLogger.info("Verify that product price  is the same as previous page");
-        assertEquals(pages.products().detailsGenInfSalesPrice.getText(),price);
+//        extentLogger.info("Verify that product price  is the same as previous page");
+//        assertEquals(pages.products().detailsGenInfSalesPrice.getText(),price);
 
-        extentLogger.pass("Completed: Product Name and Price Test");
+        extentLogger.pass("Completed: Valid Product Name ");
     }
 
 //    Mehmet Keles

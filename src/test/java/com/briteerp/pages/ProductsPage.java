@@ -20,6 +20,9 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//div[@class='oe_kanban_global_click o_kanban_record']")
     public List<WebElement> products;
 
+    @FindBy(xpath = "//ol[@class='breadcrumb']//li[@class='active']")
+    public WebElement detailsProductNameAtTheTop;
+
     @FindBy(xpath = "(//div[@class='o_form_buttons_view']/button)[1]")
     public WebElement detailsEditBtn;
 
