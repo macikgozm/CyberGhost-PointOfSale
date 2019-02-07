@@ -14,7 +14,7 @@ public class Pages {
     private OrdersPage ordersPage;
     private ProductsPage productsPage;
     private PricelistPage pricelistPage;
-    private PricelistPage sessionsPage;
+    private SessionsPage sessionsPage;
 
 
 

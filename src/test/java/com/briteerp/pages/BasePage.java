@@ -53,6 +53,9 @@ public abstract class BasePage {
     @FindBy(xpath = "//button[@class='btn btn-icon fa fa-lg fa-list-ul o_cp_switch_list']")
     public WebElement viewTypeList;
 
+    @FindBy (linkText = "Sessions")
+    public WebElement sessionsLink;
+
 
     protected final int timeOutInSec = Integer.parseInt(ConfigurationReader.getProperty("timeOutInSec"));
 
