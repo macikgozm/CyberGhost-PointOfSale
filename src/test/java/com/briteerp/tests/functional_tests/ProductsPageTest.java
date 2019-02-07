@@ -8,9 +8,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.util.Date;
 
 public class ProductsPageTest extends TestBase {
+
 
     // Mehmet Acikgoz - BRIT-854
     @Test (priority = 1)
@@ -207,12 +209,15 @@ public class ProductsPageTest extends TestBase {
         product.click();
 
         extentLogger.info("Verify that the name of the product is displayed on the top of the page.");
+
         BrowserUtils.waitForVisibility(pages.products().detailsGenInfSalesPrice, timeOutInSec);
         String productNameAtTheTop = pages.products().detailsProductNameAtTheTop.getText().trim();
         Assert.assertTrue(productNameAtTheTop.contains(productName));
+        Assert.assertTrue(pages.products().detailsProductNameLabel.isDisplayed());
 
         extentLogger.pass ("Product name is seen at the top of the page");
     }
+
 
 
 //    Mehmet Acikgoz - BRIT 1861

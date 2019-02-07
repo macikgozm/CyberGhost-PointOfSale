@@ -15,7 +15,7 @@
             <class name="com.briteerp.tests.functional_tests.ProductsPageTest">
                 <methods>
                     <include name="canProductBeUnFollowed"></include>
-<!--                    <include name="canProductBeFollowed"></include>-->
+                    <include name="canProductBeFollowed"></include>
 
                 </methods>
             </class>
