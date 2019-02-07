@@ -3,12 +3,21 @@
 
     <test name="WebOrders Automated Tests">
         <classes>
-            <class name="com.briteerp.tests.smoke_tests.StartUpTests">
 <!--
+            <class name="com.briteerp.tests.smoke_tests.StartUpTests">
+&lt;!&ndash;
                  <methods>
                     <exclude name="blankPassword"/>
                 </methods>
+&ndash;&gt;
+            </class>
 -->
+            <class name="com.briteerp.tests.functional_tests.ProductsPageTest">
+                <methods>
+                    <include name="canProductBeUnFollowed"></include>
+                    <include name="canProductBeFollowed"></include>
+
+                </methods>
             </class>
         </classes>
     </test>

@@ -104,6 +104,18 @@ public class BrowserUtils {
         return elemTexts;
     }
 
+    //    Mehmet Acikgoz
+    public static boolean  waitUntilTextToBePresentInElementValue(WebElement element, String textToAppear, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
+        return wait.until( ExpectedConditions.textToBePresentInElementValue(element, textToAppear) ) ;
+    }
+
+    //    Mehmet Acikgoz
+    public static boolean  waitUntilTextToBePresentInElement(WebElement element, String textToAppear, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
+        return wait.until( ExpectedConditions.textToBePresentInElement(element, textToAppear) ) ;
+    }
+
     public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeToWaitInSec);
         return wait.until(ExpectedConditions.visibilityOf(element));
@@ -232,7 +244,7 @@ public class BrowserUtils {
      *
      * @param element
      */
-    public void clickWithJS(WebElement element) {
+    public static void clickWithJS(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
     }
@@ -243,7 +255,7 @@ public class BrowserUtils {
      *
      * @param element
      */
-    public void scrollToElement(WebElement element) {
+    public static void scrollToElement(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 

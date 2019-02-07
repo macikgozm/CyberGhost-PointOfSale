@@ -12,6 +12,7 @@ import static org.testng.Assert.*;
  */
 public class StartUpTests extends TestBase {
 
+<<<<<<< HEAD
 /*
 //    Mehmet Acikgoz
     protected void getMeToPointOfSalesAs(String accessLevel){
@@ -41,24 +42,42 @@ public class StartUpTests extends TestBase {
     //    Mehmet Acikgoz
     @Test
     public void checkProductPageHeader() {
+=======
+//    Mehmet Acikgoz -BRIT 948
+    @Test
+    public void validProductPageHeader(){
+>>>>>>> e53ee4b6b10c03fe2d6fefb1fe5df5864426c10a
         extentLogger = report.createTest("Product Page Header Test");
         getMeToPointOfSalesAs("user");
 
         extentLogger.info("Click on the Products");
         pages.pointOfSale().productsLink.click();
 
+<<<<<<< HEAD
         BrowserUtils.wait(10);
         extentLogger.info("Verify that product page has the header " + ApplicationConstants.PRODUCTS_PAGE_HEADER);
+=======
+        BrowserUtils.waitUntilTextToBePresentInElement(pages.products().tabTitle,
+                                                       ApplicationConstants.PRODUCTS_PAGE_HEADER, timeOutInSec);
+
+        extentLogger.info("Verify that product page has the header " + ApplicationConstants.PRODUCTS_PAGE_HEADER );
+>>>>>>> e53ee4b6b10c03fe2d6fefb1fe5df5864426c10a
         assertEquals(pages.products().tabTitle.getText(), ApplicationConstants.PRODUCTS_PAGE_HEADER);
 
         extentLogger.pass("Completed: Product Page Header Test");
-
     }
 
+<<<<<<< HEAD
     //    Mehmet Acikgoz
     @Test
     public void checkProductNameandPrice() {
         extentLogger = report.createTest("Product Name and Price Test");
+=======
+//    Mehmet Acikgoz -BRIT-945
+    @Test
+    public void validProductNameWhenClicked(){
+        extentLogger = report.createTest("Valid Product Name ");
+>>>>>>> e53ee4b6b10c03fe2d6fefb1fe5df5864426c10a
         getMeToPointOfSalesAs("user");
 
         extentLogger.info("Click on the Products");
@@ -68,20 +87,22 @@ public class StartUpTests extends TestBase {
         extentLogger.info("Selecting the Product randomly  : " + productName);
         WebElement product = pages.products().selectProduct(productName);
 
-        extentLogger.info("Getting the price of " + productName);
-        String price = pages.products().getPrice(product);
-
         BrowserUtils.waitForClickablility(product, timeOutInSec);
         extentLogger.info("Clicking on the " + productName);
         pages.products().clickOnProduct(product);
+        BrowserUtils.waitForVisibility(pages.products().detailsProductNameLabel, timeOutInSec);
 
         extentLogger.info("Verify that product name is the same as previous page");
         assertEquals(pages.products().detailsProductNameLabel.getText(), productName);
 
+<<<<<<< HEAD
         extentLogger.info("Verify that product price  is the same as previous page");
         assertEquals(pages.products().detailsGenInfSalesPrice.getText(), price);
 
         extentLogger.pass("Completed: Product Name and Price Test");
+=======
+        extentLogger.pass("Completed: Valid Product Name ");
+>>>>>>> e53ee4b6b10c03fe2d6fefb1fe5df5864426c10a
     }
 
     //    Mehmet Keles

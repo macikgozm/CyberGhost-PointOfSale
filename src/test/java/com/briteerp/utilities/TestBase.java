@@ -94,10 +94,12 @@ public abstract class TestBase {
         if (accessLevel.equals("user"))
             pages.login().login(ConfigurationReader.getProperty("user-username"),
                     ConfigurationReader.getProperty("user-password"));
-        else
+        else if (accessLevel.equals("manager"))
             pages.login().login(ConfigurationReader.getProperty("manager-username"),
                     ConfigurationReader.getProperty("manager-password"));
-
+        else {
+            System.out.println("Invalid credentials: Please enter either 'user' or 'manager' ");
+        }
 
         extentLogger.info("Click on the Point of Sales page");
         BrowserUtils.waitForClickablility(pages.main().pointOfSaleLink, timeOutInSec);
