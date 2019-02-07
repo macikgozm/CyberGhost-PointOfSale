@@ -94,7 +94,7 @@ public abstract class TestBase {
         if (accessLevel.equals("user"))
             pages.login().login(ConfigurationReader.getProperty("user-username"),
                     ConfigurationReader.getProperty("user-password"));
-        else if ( accessLevel.equals("manager") )
+        else if (accessLevel.equals("manager"))
             pages.login().login(ConfigurationReader.getProperty("manager-username"),
                     ConfigurationReader.getProperty("manager-password"));
         else {
