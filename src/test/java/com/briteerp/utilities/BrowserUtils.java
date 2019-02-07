@@ -119,19 +119,6 @@ public class BrowserUtils {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-//    Mehmet Acikgoz
-    public static boolean  waitUntilTextToBePresentInElementValue(WebElement element, String textToAppear, int timeout) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
-        return wait.until( ExpectedConditions.textToBePresentInElementValue(element, textToAppear) ) ;
-    }
-
-    //    Mehmet Acikgoz
-    public static boolean  waitUntilTextToBePresentInElement(WebElement element, String textToAppear, int timeout) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
-        return wait.until( ExpectedConditions.textToBePresentInElement(element, textToAppear) ) ;
-    }
-
-
     public static WebElement waitForClickablility(By locator, int timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
