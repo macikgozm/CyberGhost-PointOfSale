@@ -94,14 +94,10 @@ public class ProductsPage extends BasePage {
      *
      * @return the name of the randomly selected product.
      */
-<<<<<<< HEAD
-    public String selectAnyProduct() {
-        int rnd = new Random().nextInt(products.size());
-=======
+
     public String selectAnyProduct(){
         BrowserUtils.wait(3);
         int rnd = new Random().nextInt( products.size() );
->>>>>>> e53ee4b6b10c03fe2d6fefb1fe5df5864426c10a
         WebElement element = products.get(rnd).findElement(By.className("o_kanban_record_title"));
         BrowserUtils.waitForVisibility(element, timeOutInSec);
 //        String productName = element.getText().trim();
