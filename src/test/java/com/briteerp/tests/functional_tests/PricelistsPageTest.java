@@ -66,11 +66,12 @@ public class PricelistsPageTest extends TestBase {
 
         extentLogger.info("Verify that the pricelist is shown on the page.");
         BrowserUtils.wait(5);
-        String availablePricelist = BrowserUtils.getElementsText(pages.pricelist().pricelistsNames).toString();
+        //String availablePricelist = BrowserUtils.getElementsText(pages.pricelist().pricelistsNames).toString();
+        String availablePricelist = pages.pricelist().pricelistsNames.get(0).getText();
         System.out.println("available Pricelist = " + availablePricelist);
 
         extentLogger.info("Verify that pricelist name is displayed");
-        Assert.assertEquals("[" + pricelistName + "]", availablePricelist);
+        Assert.assertEquals( pricelistName, availablePricelist);
 
         extentLogger.pass("Completed : Pricelist name is displayed when searched.");
     }
@@ -230,7 +231,7 @@ public class PricelistsPageTest extends TestBase {
         extentLogger.info("Clicking on localhost link");
         pages.pricelist().localhostLink.click();
 
-        BrowserUtils.wait(5);
+        BrowserUtils.wait(10);
         extentLogger.info("Verify that page title contains “localhost");
         String message = Driver.getDriver().getTitle();
         System.out.println(message);
