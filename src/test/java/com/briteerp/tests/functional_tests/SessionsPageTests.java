@@ -32,28 +32,7 @@ public class SessionsPageTests extends TestBase {
 
 //Eyup Savas-2 BRIT-
 
-    @Test
-    public void ResponsablePerson(){
-        extentLogger = report.createTest("Responsible person test ");
-        getMeToPointOfSalesAs("manager");
 
-        extentLogger.info("Click on the Sessions link");
-        pages.pointOfSale().sessionsLink.click();
-        BrowserUtils.wait(10);
-
-        extentLogger.info("Click on the Tysons corner mall in the table");
-        pages.sessions().tysonsCorner.click();
-
-        extentLogger.info("Verify that responsible person is POSUser3");
-        String responsible = SessionsPage.POSUser3.getText();
-        Assert.assertEquals(responsible, ApplicationConstants.RESPONSIBLE_PERSON);
-
-        extentLogger.pass("Completed: Responsible Person Test");
-
-
-
-
-    }
 
 
 
