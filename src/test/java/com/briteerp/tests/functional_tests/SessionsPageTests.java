@@ -1,6 +1,9 @@
 package com.briteerp.tests.functional_tests;
 
-import com.briteerp.utilities.*;
+import com.briteerp.utilities.ApplicationConstants;
+import com.briteerp.utilities.BrowserUtils;
+import com.briteerp.utilities.Driver;
+import com.briteerp.utilities.TestBase;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
