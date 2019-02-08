@@ -15,15 +15,16 @@ public class Pages {
     private ProductsPage productsPage;
     private PricelistPage pricelistPage;
     private SessionsPage sessionsPage;
+    private LocalhostPage localhostPage;
 
 
-
-    public HomePage home(){
-        if (homePage == null){
+    public HomePage home() {
+        if (homePage == null) {
             homePage = new HomePage();
         }
         return homePage;
     }
+
     public LoginPage login() {
         if (loginPage == null) {
             loginPage = new LoginPage();
@@ -31,21 +32,21 @@ public class Pages {
         return loginPage;
     }
 
-    public MainPage main(){
-        if (mainPage == null){
+    public MainPage main() {
+        if (mainPage == null) {
             mainPage = new MainPage();
         }
         return mainPage;
     }
 
-    public PointOfSalePage pointOfSale(){
-        if (pointOfSalePage == null){
+    public PointOfSalePage pointOfSale() {
+        if (pointOfSalePage == null) {
             pointOfSalePage = new PointOfSalePage();
         }
         return pointOfSalePage;
     }
 
-     public DashboardPage dashboard() {
+    public DashboardPage dashboard() {
         if (dashboardPage == null) {
             dashboardPage = new DashboardPage();
         }
@@ -73,10 +74,17 @@ public class Pages {
         return pricelistPage;
     }
 
-    public SessionsPage sessions (){
-        if (sessionsPage == null){
+    public SessionsPage sessions() {
+        if (sessionsPage == null) {
             sessionsPage = new SessionsPage();
         }
         return sessionsPage;
+    }
+
+    public LocalhostPage localhost() {
+        if (localhostPage == null) {
+            localhostPage = new LocalhostPage();
+        }
+        return localhostPage;
     }
 }

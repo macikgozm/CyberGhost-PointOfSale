@@ -18,8 +18,6 @@ public abstract class TestBase {
     private static ExtentHtmlReporter htmlReporter;
     protected static ExtentTest extentLogger;
 
-//    protected final String timeOutInSec = ConfigurationReader.getProperty("timeOutInSec");
-
     protected final int timeOutInSec = Integer.parseInt(ConfigurationReader.getProperty("timeOutInSec"));
 
     @BeforeMethod
@@ -82,7 +80,7 @@ public abstract class TestBase {
     }
 
 
-    protected void getMeToPointOfSalesAs(String accessLevel){
+    protected void getMeToPointOfSalesAs(String accessLevel) {
         extentLogger.info("Open the homepage");
         pages.home().open();
 
@@ -94,18 +92,18 @@ public abstract class TestBase {
         if (accessLevel.equals("user"))
             pages.login().login(ConfigurationReader.getProperty("user-username"),
                     ConfigurationReader.getProperty("user-password"));
-        else
+        else if (accessLevel.equals("manager"))
             pages.login().login(ConfigurationReader.getProperty("manager-username"),
                     ConfigurationReader.getProperty("manager-password"));
-
+        else {
+            System.out.println("Invalid credentials: Please enter either 'user' or 'manager' ");
+        }
 
         extentLogger.info("Click on the Point of Sales page");
         BrowserUtils.waitForClickablility(pages.main().pointOfSaleLink, timeOutInSec);
         pages.main().pointOfSaleLink.click();
 
     }
-
-
 
 
 }

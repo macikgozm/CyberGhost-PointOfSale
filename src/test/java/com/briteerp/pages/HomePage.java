@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by macik on 1/29/2019.
  */
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 
     @FindBy(linkText = "Sign in")
     public WebElement signInBtn;
@@ -17,11 +17,11 @@ public class HomePage extends BasePage{
     @FindBy(linkText = "BriteErpDemo")
     public WebElement briteErpDemoLink;
 
-    public HomePage(){
+    public HomePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    public void open(){
+    public void open() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 }

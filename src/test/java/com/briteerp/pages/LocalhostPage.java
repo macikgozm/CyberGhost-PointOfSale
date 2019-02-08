@@ -5,15 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-/**
- * Created by macik on 1/29/2019.
- */
-public class MainPage {
+public class LocalhostPage extends BasePage {
 
-    @FindBy(xpath = "//li//a//span[contains(text(),'Point of Sale')]")
-    public WebElement pointOfSaleLink;
-
-    public MainPage() {
+    public LocalhostPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
+
+    @FindBy(xpath = "//span[@name='social_twitter']")
+    public WebElement twitter;
+
+    @FindBy(xpath = "//label[@class='o_form_label']")
+    public WebElement language;
+
 }
