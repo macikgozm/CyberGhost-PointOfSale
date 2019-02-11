@@ -10,7 +10,7 @@ public class ApplicationConstants {
     public static final String POINTOFSALE_PAGE_HEADER = "Point of Sale";
     public static final String SESSIONS_PAGE_TITLE = "Sessions - Odoo";
     public static final String SESSIONS_PAGE_HEADER = "Sessions";
-
+    public static final String SESSIONS_PAGE_STATUS = "In Progress";
     public static final String RESPONSIBLE_PERSON = "POSUser3";
 
     public static final String ERROR_SUBPAGE_HEADER = "Access Error";
