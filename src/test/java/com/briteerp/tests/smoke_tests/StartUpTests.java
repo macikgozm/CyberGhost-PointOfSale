@@ -107,7 +107,7 @@ public class StartUpTests extends TestBase {
         pages.pointOfSale().ordersLink.click();
 
         BrowserUtils.wait(10);
-        extentLogger.info("Verify that Pricelists page has the header " + ApplicationConstants.ORDERLISTS_PAGE_HEADER);
+        extentLogger.info("Verify that orders page has the header " + ApplicationConstants.ORDERLISTS_PAGE_HEADER);
         assertEquals(pages.orders().tabTitle.getText(), ApplicationConstants.ORDERLISTS_PAGE_HEADER);
 
         extentLogger.pass("Completed: Pricelists Page Header Test");
